@@ -20,7 +20,7 @@ fn write_input_to_terminal(input: &InputState, terminal_emulator: &mut TerminalE
 fn get_char_size(ctx: &egui::Context) -> (f32, f32) {
     let font_id = ctx.style().text_styles[&egui::TextStyle::Monospace].clone();
     ctx.fonts(move |fonts| {
-        
+        // NOTE: Glyph width seems to be a little too wide
         let width = fonts
             .layout(
                 "@".to_string(),
@@ -103,7 +103,7 @@ impl eframe::App for TermieGui {
             });
 
             let response = unsafe {
-                
+                // FIXME: Brakes something for sure
                 ui.label(std::str::from_utf8_unchecked(self.terminal_emulator.data()))
             };
 
